@@ -8,11 +8,12 @@ const strainsRouter = require('./strains/strains-router');
 
 const helmet = require('helmet');
 
+server.use(cors())
+server.use(helmet())
 server.use(express.json());
-
 server.use('/api/strains', strainsRouter)
 
-server.use(cors())
+
 
 // server.use('/api/users', userRouter)
 
