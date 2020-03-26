@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const server = express();
+server.use(helmet())
 server.use(cors())
 
 // const userRouter = require('../users/user-router');
@@ -18,7 +19,7 @@ server.use(function(req, res, next) {
   
 
 // server.use(cors())
-server.use(helmet())
+// server.use(helmet())
 server.use(express.json());
 
 
