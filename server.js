@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const server = express();
+const helmet = require('helmet');
 server.use(helmet())
 server.use(cors())
 
@@ -8,7 +9,6 @@ server.use(cors())
 
 const strainsRouter = require('./strains/strains-router');
 
-const helmet = require('helmet');
 
 server.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
