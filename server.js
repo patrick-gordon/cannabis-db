@@ -8,9 +8,19 @@ const strainsRouter = require('./strains/strains-router');
 
 const helmet = require('helmet');
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://cannabis-strains-db.herokuapp.com/"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
+  
+
 server.use(cors())
 server.use(helmet())
 server.use(express.json());
+
+
 server.use('/api/strains', strainsRouter)
 
 

@@ -4,6 +4,7 @@ const Strains = require('./strains-model')
 const router = express.Router();
 
 router.get('/', (req,res) => {
+    debugger;
     Strains.getStrains()
         .then((strains) => {
             res.status(200).json(strains)
