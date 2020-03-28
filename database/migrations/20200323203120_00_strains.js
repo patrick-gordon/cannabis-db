@@ -14,11 +14,38 @@ exports.up = function(knex) {
         
 
     strains
-        .int('rating')
+        .integer('rating')
 
     strains
         .text('description')
+  })
 
+  .createTable('users', tbl => {
+    users.increments();
+
+    users
+      .string('username', 128)
+      .unique()
+      .notNullable();
+      
+    users
+      .string('password', 30)
+      .notNullable();
+  })
+
+  .createTable('favorites', tbl => {
+    favorite.increments('id').primary().notNullable()
+
+    favorite
+      .integer('strain_id')
+      .refrences('id')
+      .inTable('strains')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE')
+      
+    favorite
+      .integer()
+    
   })
 };
 

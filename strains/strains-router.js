@@ -30,6 +30,7 @@ router.get('/:type', (req, res) => {
             res.status(200).json(strains)
         })
         .catch((err) => {
+            console.log(err)
             res.status(500).json({error: "Could not get Strains"})
         })
 })
