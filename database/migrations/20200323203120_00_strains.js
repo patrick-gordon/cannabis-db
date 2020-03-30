@@ -20,7 +20,7 @@ exports.up = function(knex) {
         .text('description')
   })
 
-  .createTable('users', tbl => {
+  .createTable('users', users => {
     users.increments();
 
     users
@@ -31,25 +31,38 @@ exports.up = function(knex) {
     users
       .string('password', 30)
       .notNullable();
+
+    users
+      .integer('favorites')
+      .references('id')
+      .inTable('favorites')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE')
+
   })
 
-  .createTable('favorites', tbl => {
+  .createTable('favorites', favorite => {
     favorite.increments('id').primary().notNullable()
 
     favorite
       .integer('strain_id')
-      .refrences('id')
+      .references('id')
       .inTable('strains')
       .onDelete('CASCADE')
       .onUpdate('CASCADE')
       
     favorite
-      .integer()
-    
+      .integer('user_favorites')
+      .references('id')
+      .inTable('users')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE')
   })
 };
 
 exports.down = function(knex) {
   return knex.schema
   .dropTableIfExists('strains')
+  .dropTableIfExists('users')
+  .dropTableIfExists('favorites')
 };

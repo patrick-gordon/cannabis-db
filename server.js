@@ -26,6 +26,7 @@ server.use(express.json());
 
 
 server.use('/api/strains', strainsRouter)
+server.use ('/api/users', )
 
 
 
